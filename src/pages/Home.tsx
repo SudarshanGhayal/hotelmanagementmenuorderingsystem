@@ -2,7 +2,7 @@
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Clock, ShoppingCart, History } from 'lucide-react';
+import { Clock, ShoppingCart, History, Settings } from 'lucide-react';
 
 const Home = () => {
   return (
@@ -33,6 +33,18 @@ const Home = () => {
               </Link>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Quick Admin Access */}
+      <section className="py-8 bg-secondary/30">
+        <div className="container mx-auto px-4 text-center">
+          <Link to="/admin/login">
+            <Button variant="outline" className="flex items-center gap-2">
+              <Settings className="w-4 h-4" />
+              Staff Login
+            </Button>
+          </Link>
         </div>
       </section>
 
