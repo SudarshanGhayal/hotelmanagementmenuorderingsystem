@@ -12,7 +12,7 @@ const Home = () => {
         <div className="container mx-auto px-4 py-16">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Welcome to Hotel Oasis
+              Welcome to Hotel Sudarshan
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-primary-foreground/90">
               Experience fine dining from the comfort of your room
