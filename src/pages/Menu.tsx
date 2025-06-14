@@ -152,7 +152,7 @@ const Menu = () => {
         <div className="container mx-auto px-4 py-6">
           <div className="flex justify-between items-center">
             <div>
-              <h1 className="text-3xl font-bold">Hotel Oasis</h1>
+              <h1 className="text-3xl font-bold">Hotel Sudarshan</h1>
               <p className="text-primary-foreground/80">Fine Dining Experience</p>
             </div>
             <Link to="/cart" className="relative">

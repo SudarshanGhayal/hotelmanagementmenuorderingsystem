@@ -128,7 +128,7 @@ const AdminDashboard = () => {
           <div className="flex justify-between items-center">
             <div>
               <h1 className="text-3xl font-bold">Admin Dashboard</h1>
-              <p className="text-primary-foreground/80">Hotel Oasis Management</p>
+              <p className="text-primary-foreground/80">Hotel Sudarshan Management</p>
             </div>
             <div className="flex items-center gap-4">
               <span>Welcome, {user?.username}</span>

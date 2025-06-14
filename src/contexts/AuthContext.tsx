@@ -1,10 +1,15 @@
-
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import axios from 'axios';
 
 interface User {
   id: string;
   username: string;
-  role: 'admin' | 'customer';
+  role: string;
+}
+interface LoginResponse {
+  token: string;
+  username: string;
+  role: string;
 }
 
 interface AuthContextType {
@@ -34,31 +39,45 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, []);
 
-  const login = async (username: string, password: string): Promise<boolean> => {
-    // Mock authentication - in real app this would call your API
-    if (username === 'admin' && password === 'admin123') {
-      const adminUser: User = {
-        id: '1',
-        username: 'admin',
-        role: 'admin'
-      };
-      setUser(adminUser);
-      localStorage.setItem('hotelUser', JSON.stringify(adminUser));
-      return true;
-    }
+ const login = async (username: string, password: string): Promise<boolean> => {
+  try {
+    const response = await axios.post<LoginResponse>('https://localhost:56297/api/Auth/login', {
+      username,
+      password,
+    });
+    console.log("Login API response:", response.data); // ✅ SEE WHAT ACTUALLY COMES
+
+    const { token, username: name, role } = response.data;
+
+    const userData: User = {
+      id: '', // Optional: decode from token
+      username: name,
+      role: role.toLowerCase() as 'admin' | 'customer',
+    };
+
+    localStorage.setItem('hotelUser', JSON.stringify(userData));
+    localStorage.setItem('hotelToken', token);
+    setUser(userData);
+
+    return true;
+  } catch (error) {
+    console.error("❌ Login API error:", error?.response?.data || error.message);
     return false;
-  };
+  }
+};
+
 
   const logout = () => {
     setUser(null);
     localStorage.removeItem('hotelUser');
+    localStorage.removeItem('hotelToken');
   };
 
   const value = {
     user,
     login,
     logout,
-    isAdmin: user?.role === 'admin'
+    isAdmin: user?.role === 'admin',
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
