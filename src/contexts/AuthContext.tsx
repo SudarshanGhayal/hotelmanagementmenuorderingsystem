@@ -42,10 +42,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
  const login = async (username: string, password: string): Promise<boolean> => {
   try {
     const response = await axios.post<LoginResponse>('https://localhost:56297/api/Auth/login', {
-      username,
-      password,
-    });
-    console.log("Login API response:", response.data); // ✅ SEE WHAT ACTUALLY COMES
+        username,
+        password,
+      });
+      console.log("Login API response:", response.data); // ✅ SEE WHAT ACTUALLY COMES 
 
     const { token, username: name, role } = response.data;
 
@@ -60,8 +60,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setUser(userData);
 
     return true;
-  } catch (error) {
-    console.error("❌ Login API error:", error?.response?.data || error.message);
+  } catch (error: any) {
+    console.log("Login API Error:", error || error.message);
     return false;
   }
 };

@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -91,6 +91,14 @@ const AdminLogin = () => {
             <p>Username: admin</p>
             <p>Password: admin123</p>
           </div> */}
+          <Link to="/">
+            <Button
+              variant="outline"
+              className="w-full mt-2"
+            >
+              Go Back to Home
+            </Button>
+          </Link>
         </CardContent>
       </Card>
     </div>
